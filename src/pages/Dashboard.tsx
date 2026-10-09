@@ -84,10 +84,26 @@ function DashInner({ email }: { email: string }) {
   const nextDayIdx = Math.min(p.completedDays.length, 6)
   const recent = p.sessions.slice(0, 4)
 
+  if (!server) {
+    return (
+      <Page email={email} app>
+        <div className="skeleton h-5 w-48" />
+        <div className="skeleton mt-2 h-8 w-64" />
+        <div className="card mt-4"><div className="skeleton h-20 w-full" /><div className="skeleton mt-3 h-12 w-full" /></div>
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => <div key={i} className="skeleton h-[72px]" />)}
+        </div>
+      </Page>
+    )
+  }
+
   return (
     <Page email={email} app>
-      <p className="page-enter-1 text-sm text-white/60">Olá! Bora praticar hoje?</p>
-      <h1 className="page-enter-1 text-2xl font-black">Seu painel de estudos</h1>
+      <div className="flex flex-wrap items-center gap-2">
+        <p className="page-enter-1 text-sm text-white/60">Olá! Bora praticar hoje?</p>
+        <span className="badge border-emerald-400/40 bg-emerald-500/10 text-emerald-300">● Acesso ativo</span>
+      </div>
+      <h1 className="page-enter-1 text-2xl font-black sm:text-3xl">Seu painel de estudos</h1>
       {loadError && <p className="card mt-3 border-gold/40 text-sm text-gold-light">Sem conexão com o servidor — mostrando dados locais temporários.</p>}
 
       {/* Progresso geral + continuar */}
@@ -116,7 +132,7 @@ function DashInner({ email }: { email: string }) {
 
       {/* Acesso rápido */}
       <h2 className="page-enter-3 mt-6 text-sm font-black uppercase tracking-widest text-white/55">Acesso rápido</h2>
-      <div className="page-enter-3 mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
+      <div className="page-enter-3 mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
         {QUICK.map((q) => {
           const Icon = q.icon
           return (
