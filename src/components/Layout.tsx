@@ -53,7 +53,7 @@ export function BottomNav() {
   const loc = useLocation()
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/[0.07] bg-ink-950/95 backdrop-blur md:hidden">
-      <div className="mx-auto grid max-w-5xl grid-cols-5 px-1">
+      <div className="safe-bottom mx-auto grid max-w-5xl grid-cols-5 px-1 pt-2">
         {NAV_MAIN.map((i) => {
           const active = loc.pathname === i.to
           return (
@@ -120,9 +120,10 @@ export function Page({ children, email, app }: { children: React.ReactNode; emai
   return (
     <div className="min-h-screen pb-24 md:pb-10">
       {app && <Sidebar email={email} />}
-      <div className={app ? 'md:pl-60' : ''}>
+      <div className={app ? 'relative md:pl-60' : 'relative'}>
+        <div className="app-glow" aria-hidden />
         <TopBar email={email} showLogout={!!app} />
-        <main className="page-enter mx-auto w-full max-w-5xl px-4 pt-5">{children}</main>
+        <main className="page-enter relative mx-auto w-full max-w-5xl px-4 pt-5 lg:max-w-6xl">{children}</main>
         <footer className="mx-auto max-w-5xl px-4 pt-10 text-center text-xs text-white/50">
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link className="underline" to="/privacidade">Privacidade</Link>
