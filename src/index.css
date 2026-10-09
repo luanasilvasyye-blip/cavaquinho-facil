@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink-950 text-white antialiased;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+::selection {
+  background: rgba(16, 217, 126, 0.35);
+}
+
+/* Foco visível para acessibilidade */
+:where(a, button, input, select):focus-visible {
+  outline: 2px solid #2be89a;
+  outline-offset: 2px;
+}
+
+/* ---------- Componentes ---------- */
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-emerald-400 to-emerald-600 px-6 py-4 text-lg font-bold text-ink-950 shadow-glow transition duration-200 hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:scale-[0.98] disabled:opacity-50 disabled:hover:translate-y-0 min-h-[56px];
+}
+
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-gold/50 bg-gold/10 px-6 py-4 text-lg font-bold text-gold-light transition duration-200 hover:-translate-y-0.5 hover:bg-gold/20 active:translate-y-0 active:scale-[0.98] min-h-[56px];
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-semibold text-white backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:bg-white/10 active:translate-y-0 active:scale-[0.98] min-h-[48px];
+}
+
+.card {
+  @apply rounded-2xl border border-white/[0.08] bg-gradient-to-b from-ink-800 to-ink-900 p-5 shadow-card;
+}
+
+.card-interactive {
+  @apply transition duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-soft;
+}
+
+.input {
+  @apply w-full rounded-xl border border-white/15 bg-ink-950/70 px-4 py-3 text-white placeholder:text-white/35 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/25 min-h-[52px];
+}
+
+.label {
+  @apply mb-1 block text-sm font-semibold text-white/70;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80;
+}
+
+.chip {
+  @apply shrink-0 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-bold text-white/70 transition active:scale-95;
+}
+
+.chip-active {
+  @apply border-emerald-400/60 bg-emerald-500/15 text-emerald-300 shadow-glow;
+}
+
+/* ---------- Animações ---------- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-enter-1 { animation-delay: 0.05s; }
+.page-enter-2 { animation-delay: 0.12s; }
+.page-enter-3 { animation-delay: 0.19s; }
+.page-enter-4 { animation-delay: 0.26s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.beat-dot {
+  transition: transform 0.08s ease, background-color 0.08s ease, box-shadow 0.08s ease;
+}
+
+@keyframes pulse-beat {
+  0% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+.beat-active {
+  animation: pulse-beat 0.18s ease-out;
+}
+
+/* Scrollbar discreta */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+*::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
