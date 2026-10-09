@@ -7,18 +7,20 @@ import { playChordMidis } from '../lib/audio'
 // Áudio real via Web Audio API; posições verificadas nota por nota.
 export function ChordDiagram({ chord, onPractice }: { chord: ChordDefinition; onPractice?: (id: string) => void }) {
   const [playing, setPlaying] = useState(false)
+  const [audioError, setAudioError] = useState(false)
   const notes = chordNotes(chord)
   const maxFret = Math.max(4, ...chord.frets)
   const frets = Array.from({ length: maxFret }, (_, i) => i + 1)
 
   const play = () => {
     try {
+      setAudioError(false)
       setPlaying(true)
       playChordMidis(notes.map((n) => n.midi))
       window.setTimeout(() => setPlaying(false), 900)
     } catch {
       setPlaying(false)
-      alert('Áudio indisponível neste navegador. Tente Chrome ou Edge no celular.')
+      setAudioError(true)
     }
   }
 
@@ -90,6 +92,12 @@ export function ChordDiagram({ chord, onPractice }: { chord: ChordDefinition; on
           </div>
         ))}
       </div>
+
+      {audioError && (
+        <p role="alert" className="mt-2 rounded-xl border border-gold/40 bg-gold/10 p-2 text-center text-xs text-gold-light">
+          Áudio indisponível neste navegador. Tente Chrome ou Edge no celular.
+        </p>
+      )}
 
       <div className="mt-4 grid grid-cols-2 gap-2">
         <button className="btn-primary !min-h-[52px] !text-base" onClick={play} disabled={playing} aria-label={`Ouvir acorde ${chord.short}`}>
