@@ -57,7 +57,7 @@ curl -X POST http://localhost:8888/.netlify/functions/hotmart-webhook \
 2. Em https://app.netlify.com → **Add new site → Import an existing project**.
 3. Build: `npm run build` · Publish: `dist` · Functions: `netlify/functions` (o `netlify.toml` já define).
 4. Em **Site settings → Environment variables**, cadastre (nunca commite valores):
-   - Servidor: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `HOTMART_HOTTOK`, `HOTMART_PRODUCT_ID` (= `8696888`), `SESSION_SECRET`, `TRANSACTION_HMAC_SECRET`, `ADMIN_RESTORE_KEY`, `KIT_BUCKET=kit-pdfs`, `KIT_URL_EXPIRY_SECONDS=120`
+   - Servidor: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `HOTMART_HOTTOK`, `HOTMART_PRODUCT_ID`, `SESSION_SECRET`, `TRANSACTION_HMAC_SECRET`, `ADMIN_RESTORE_KEY`, `KIT_BUCKET=kit-pdfs`, `KIT_URL_EXPIRY_SECONDS=120`
    - Frontend: `VITE_HOTMART_CHECKOUT_URL`, `VITE_SUPPORT_EMAIL`, `VITE_APP_URL=https://cavaquinho-facil.netlify.app`
    - Não usadas pelo código atual (podem ficar vazias): `HOTMART_CHECKOUT_URL` (servidor), `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` — o navegador nunca fala com o Supabase direto; tudo passa pelas Functions com `service_role`.
 5. Deploy e confira `/.netlify/functions/analytics` respondendo.
