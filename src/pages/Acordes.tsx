@@ -50,7 +50,7 @@ export function AcordesInner({ onPractice }: { onPractice: (id: string) => void 
           ))}
         </div>
       </div>
-      <div className="mt-4 grid gap-3">
+      <div className="mt-4 grid gap-3 lg:grid-cols-2">
         {list.map((c) => (
           <ChordDiagram key={c.id} chord={c} onPractice={onPractice} />
         ))}
