@@ -110,7 +110,7 @@ function TrainerInner({ email }: { email: string }) {
 
       {/* Palco do exercício */}
       <div className="card mt-3 border-emerald-500/25 text-center">
-        <div className="flex items-center justify-center gap-5">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
           <div className="relative grid h-24 w-24 shrink-0 place-items-center">
             <svg viewBox="0 0 80 80" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden>
               <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="7" />
@@ -165,7 +165,7 @@ function TrainerInner({ email }: { email: string }) {
         </div>
       )}
 
-      <div className="mt-3 grid gap-3">
+      <div className="mt-3 grid gap-3 lg:grid-cols-2">
         <ChordDiagram chord={chordAC} />
         <ChordDiagram chord={chordBC} />
       </div>
