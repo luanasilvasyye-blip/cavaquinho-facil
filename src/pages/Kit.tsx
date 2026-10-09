@@ -42,7 +42,7 @@ function KitInner({ email }: { email: string }) {
       </p>
       {error && <p role="alert" className="card mt-3 border-red-500/40 bg-red-500/10 text-sm text-red-300">{error}</p>}
 
-      <div className="mt-4 grid gap-3">
+      <div className="mt-4 grid gap-3 lg:grid-cols-3">
         {KIT_MATERIALS.map((m, i) => {
           const cover = COVERS[i % COVERS.length]
           const Icon = cover.icon
