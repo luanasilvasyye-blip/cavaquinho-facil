@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+# Functions são servidas automaticamente em /.netlify/functions/*.
+# SPA fallback para o React Router (avaliado após arquivos estáticos e functions).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
