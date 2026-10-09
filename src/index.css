@@ -68,6 +68,45 @@ body {
   @apply border-emerald-400/60 bg-emerald-500/15 text-emerald-300 shadow-glow;
 }
 
+/* ---------- Micro-SaaS: ambiente, safe-area e esqueletos ---------- */
+
+.app-glow {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(600px 280px at 50% -80px, rgba(16, 217, 126, 0.12), transparent 70%),
+    radial-gradient(500px 300px at 90% 10%, rgba(212, 175, 55, 0.06), transparent 70%);
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.safe-bottom {
+  padding-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
+}
+
+@keyframes shimmer {
+  from { background-position: -400px 0; }
+  to { background-position: 400px 0; }
+}
+
+.skeleton {
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
 /* ---------- Animações ---------- */
 
 @keyframes fade-up {
