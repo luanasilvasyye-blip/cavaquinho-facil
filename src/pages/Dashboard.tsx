@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BookOpen, Dumbbell, Timer, TrendingUp, Volume2, ArrowRight, Package, History } from 'lucide-react'
+import { BookOpen, Dumbbell, Timer, TrendingUp, Volume2, Package, History } from 'lucide-react'
 import { Page } from '../components/Layout'
 import { getSession, type SessionInfo } from '../lib/auth'
 import { loadLocalProgress, planPercent, nextActivity, fetchServerProgress, type ProgressState, emptyProgress } from '../lib/progress'
@@ -106,26 +106,39 @@ function DashInner({ email }: { email: string }) {
       <h1 className="page-enter-1 text-2xl font-black sm:text-3xl">Seu painel de estudos</h1>
       {loadError && <p className="card mt-3 border-gold/40 text-sm text-gold-light">Sem conexão com o servidor — mostrando dados locais temporários.</p>}
 
-      {/* Progresso geral + continuar */}
-      <div className="card page-enter-2 mt-4 overflow-hidden border-emerald-500/25">
-        <div className="flex items-center gap-4">
-          <div className="relative grid h-20 w-20 shrink-0 place-items-center">
-            <svg viewBox="0 0 80 80" className="absolute inset-0 h-full w-full -rotate-90">
-              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
-              <circle
-                cx="40" cy="40" r="34" fill="none" stroke="#10d97e" strokeWidth="8" strokeLinecap="round"
-                strokeDasharray={`${(pct / 100) * 213.6} 213.6`}
-                className="transition-all duration-700"
-              />
-            </svg>
-            <span className="text-lg font-black tabular-nums">{pct}%</span>
-          </div>
+      {/* Hero: continuar + anel */}
+      <div className="card page-enter-2 mt-4 border-emerald-500/25">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <div className="flex-1">
-            <p className="text-xs font-bold uppercase tracking-widest text-white/55">Progresso geral</p>
-            <p className="mt-0.5 text-sm text-white/75">{p.completedDays.length}/7 aulas · {p.sessions.length} sessões</p>
-            <Link to={next.href} className="btn-primary mt-2 w-full !min-h-[48px] !text-base">
-              {next.label} <ArrowRight size={18} />
-            </Link>
+            <p className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-emerald-300">
+              ✦ Prática diária de cavaquinho
+            </p>
+            <h2 className="mt-2 text-xl font-black leading-tight sm:text-2xl">Bem-vindo ao seu espaço de estudos!</h2>
+            <p className="mt-1 text-sm text-white/65">
+              O som limpo está na consistência: {p.completedDays.length}/7 aulas · {p.sessions.length} sessões registradas.
+            </p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              <Link to={next.href} className="btn-primary !min-h-[48px] !text-base">
+                ▶ {next.label}
+              </Link>
+              <Link to="/app/treinador" className="btn-ghost !min-h-[48px] !text-base">
+                <Dumbbell size={17} /> Treinar trocas
+              </Link>
+            </div>
+          </div>
+          <div className="card mx-auto w-full max-w-[220px] shrink-0 !p-4 text-center sm:mx-0">
+            <div className="relative mx-auto grid h-24 w-24 place-items-center">
+              <svg viewBox="0 0 80 80" className="absolute inset-0 h-full w-full -rotate-90">
+                <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
+                <circle
+                  cx="40" cy="40" r="34" fill="none" stroke="#10d97e" strokeWidth="8" strokeLinecap="round"
+                  strokeDasharray={`${(pct / 100) * 213.6} 213.6`}
+                  className="transition-all duration-700"
+                />
+              </svg>
+              <span><span className="block text-xl font-black tabular-nums">{pct}%</span><span className="block text-[10px] text-white/55">concluído</span></span>
+            </div>
+            <p className="mt-2 text-xs text-white/60">{p.completedDays.length} de 7 aulas feitas</p>
           </div>
         </div>
       </div>
