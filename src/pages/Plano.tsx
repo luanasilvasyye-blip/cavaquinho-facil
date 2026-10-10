@@ -85,13 +85,15 @@ function PlanoInner({ email }: { email: string }) {
               <div className={`card flex-1 !p-4 ${done ? 'border-emerald-500/35' : ''} ${isOpen ? 'border-emerald-500/25' : ''}`}>
                 <button className="flex w-full items-center gap-2 text-left" onClick={() => setOpen(isOpen ? 0 : m.day)} aria-expanded={isOpen}>
                   <span className="flex-1">
-                    <span className="block text-[11px] font-bold uppercase tracking-widest text-white/50">
-                      Dia {m.day} · ~{m.minutes} min {isNext && !done ? '· próximo' : ''}
+                    <span className="block text-[11px] font-black uppercase tracking-widest text-gold-light">
+                      Dia {m.day} · {m.title} · ~{m.minutes} min
                     </span>
-                    <span className="block text-base font-black">{m.title}</span>
-                    <span className="block text-xs text-white/60">{m.goal}</span>
+                    <span className="mt-0.5 block text-base font-black">{m.goal}</span>
                   </span>
-                  <ChevronDown size={18} className={`shrink-0 text-white/50 transition ${isOpen ? 'rotate-180' : ''}`} />
+                  <span className={`btn-ghost hidden shrink-0 !min-h-[40px] !px-3 !py-2 !text-sm sm:inline-flex ${isOpen ? '!border-emerald-400/50 !text-emerald-300' : ''}`}>
+                    {isOpen ? 'Fechar' : 'Estudar →'}
+                  </span>
+                  <ChevronDown size={18} className={`shrink-0 text-white/50 transition sm:hidden ${isOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isOpen && (
                   <div className="page-enter mt-4 space-y-4 border-t border-white/[0.07] pt-4">
