@@ -2,6 +2,10 @@
   command = "npm run build"
   publish = "dist"
   functions = "netlify/functions"
+  # KIT_BUCKET é nome de bucket (não segredo) referenciado no código;
+  # isenta apenas ele do secrets scanning. Segredos reais seguem verificados.
+  [build.environment]
+    SECRETS_SCAN_OMIT_KEYS = "KIT_BUCKET"
 
 # Functions são servidas automaticamente em /.netlify/functions/*.
 # SPA fallback para o React Router (avaliado após arquivos estáticos e functions).
