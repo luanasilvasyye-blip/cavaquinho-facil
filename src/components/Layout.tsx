@@ -56,16 +56,18 @@ export function BottomNav() {
       <div className="safe-bottom mx-auto grid max-w-5xl grid-cols-5 px-1 pt-2">
         {NAV_MAIN.map((i) => {
           const active = loc.pathname === i.to
+          const Icon = i.icon
           return (
             <Link
               key={i.to}
               to={i.to}
-              className={`flex flex-col items-center gap-0.5 rounded-lg px-1 py-2.5 text-[11px] font-bold transition ${
-                active ? 'text-emerald-400' : 'text-white/60'
+              className={`flex flex-col items-center gap-1 rounded-lg px-1 py-1 text-[11px] font-bold transition ${
+                active ? 'text-emerald-400' : 'text-white/55'
               }`}
             >
-              <span className={`h-1 w-6 rounded-full transition ${active ? 'bg-emerald-400 shadow-glow' : 'bg-transparent'}`} />
+              <Icon size={21} strokeWidth={active ? 2.5 : 2} />
               {i.label}
+              <span className={`h-1 w-6 rounded-full transition ${active ? 'bg-emerald-400 shadow-glow' : 'bg-transparent'}`} />
             </Link>
           )
         })}
